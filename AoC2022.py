@@ -17,7 +17,7 @@ for x in results:
     print()
     for y in range(2):
         start = time.time()
-        print(f"{x}p{y + 1}: ", end='')
+        print(f"Day {x[1]} Part {y + 1}: ", end='')
         if getattr(globals()[x], f"p{y + 1}")(df) == results[x][y]:
             print("Correct ", end='')
         else:

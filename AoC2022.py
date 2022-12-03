@@ -11,7 +11,8 @@ results = {
 for x in results:
     globals()[x] = __import__(f"aoc2022{x}")
     df = getattr(globals()[x], 'initdf')(f"InputFiles/{x}.txt")
-    print()
+    if list(results.keys()).index(x) > 0:
+        print()
     for y in range(2):
         start = time.time()
         print(f"Day {x[1]} Part {y + 1}: ", end='')

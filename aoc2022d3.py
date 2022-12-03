@@ -2,6 +2,8 @@
 
 import pandas
 
+day = 3
+
 idx = list(map(chr, range(97, 123))) + list(map(chr, range(65, 91)))
 
 
@@ -13,16 +15,16 @@ def initdf(file):
     return pandas.DataFrame(inlist)
 
 
-def p1(df):
+def p1(indf):
     points = 0
-    for x, y in [[a, b] for a, b in zip(df[0], df[1])]:
+    for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += idx.index(list(set(x) & set(y))[0]) + 1
     return points
 
 
-def p2(df):
+def p2(indf):
     points = 0
-    elves = [(a + b) for a, b in zip(df[0], df[1])]
+    elves = [(a + b) for a, b in zip(indf[0], indf[1])]
     while len(elves) > 0:
         group = []
         for x in range(3):
@@ -32,7 +34,8 @@ def p2(df):
 
 
 if __name__ == '__main__':
-    rucksacks = initdf('Inputfiles/d3.txt')
+    df = initdf(f"InputFiles/d{day}.txt")
 
-    print(f"d3p1: {p1(rucksacks)}")
-    print(f"d3p2: {p2(rucksacks)}")
+    for i in range(2):
+        j = globals()[f"p{i + 1}"]
+        print(f"Day {day} Part {i + 1}: {j(df)}")

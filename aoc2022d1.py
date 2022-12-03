@@ -2,6 +2,8 @@
 
 import pandas
 
+day = 1
+
 
 def initdf(file):
     returnlist = []
@@ -11,16 +13,17 @@ def initdf(file):
     return pandas.DataFrame(returnlist)
 
 
-def p1(df):
-    return df[0].max()
+def p1(indf):
+    return indf[0].max()
 
 
-def p2(df):
-    return sum(df[0].nlargest(3).tolist())
+def p2(indf):
+    return sum(indf[0].nlargest(3).tolist())
 
 
 if __name__ == '__main__':
-    elves = initdf('InputFiles/d1.txt')
+    df = initdf(f"InputFiles/d{day}.txt")
 
-    print(f"d1p1: {p1(elves)}")
-    print(f"d1p2: {p2(elves)}")
+    for i in range(2):
+        j = globals()[f"p{i + 1}"]
+        print(f"Day {day} Part {i + 1}: {j(df)}")

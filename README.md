@@ -9,10 +9,10 @@ Advent of Code is an annual Christmas-themed coding game that runs every year fo
 * pandas module
 
 ## Usage
-python3 AoC2022.py
+```python3 AoC2022.py```
 
 ### Example output:
-Day 1 Part 1: Correct (0 ms)
+```Day 1 Part 1: Correct (0 ms)
 Day 1 Part 2: Correct (1 ms)
 
 Day 2 Part 1: Correct (2 ms)
@@ -20,4 +20,4 @@ Day 2 Part 2: Correct (4 ms)
 
 Day 3 Part 1: Correct (1 ms)
 Day 3 Part 2: Correct (0 ms)
-[snip]
+[snip]```

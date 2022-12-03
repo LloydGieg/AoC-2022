@@ -11,6 +11,9 @@ More details at http://adventofcode.com/
 * python3
 * pandas module
 
+## Install
+```pip3 install pandas```
+
 ## Usage
 ```python3 AoC2022.py```
 

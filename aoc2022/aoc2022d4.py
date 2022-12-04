@@ -11,15 +11,7 @@ def initdf(infile):
 
     Create a DataFrame from a text file.
     """
-    inlist = []
-    with open(infile, 'r') as f:
-        for x in f.read().split('\n'):
-            thisline = []
-            for y in x.split(','):
-                for z in y.split('-'):
-                    thisline.append(int(z))
-            inlist.append(thisline)
-    return pandas.DataFrame(inlist)
+    return pandas.read_csv(infile, sep='[-,]', engine='python', header=None)
 
 
 def p1(indf):
@@ -30,8 +22,7 @@ def p1(indf):
     overlaps = 0
     for x in zip(indf[0], indf[1], indf[2], indf[3]):
         y, z = [set(range(x[0], x[1] + 1)), set(range(x[2], x[3] + 1))]
-        smol = min([len(y), len(z)])
-        if len(y & z) == smol:
+        if len(y & z) == min([len(y), len(z)]):
             overlaps += 1
     return overlaps
 
@@ -44,7 +35,7 @@ def p2(indf):
     overlaps = 0
     for x in zip(indf[0], indf[1], indf[2], indf[3]):
         y, z = [set(range(x[0], x[1] + 1)), set(range(x[2], x[3] + 1))]
-        if len(y & z) >= 1:
+        if len(y & z):
             overlaps += 1
     return overlaps
 

@@ -7,16 +7,24 @@ inputdir = '../InputFiles'
 
 
 def initdf(infile):
+    """AoC 2022 Day 4 Init
+
+    Create a DataFrame from a text file.
+    """
     return infile
 
 
 def p1(indf):
-    """AoC 2002 Day 4 Part 1: """
+    """AoC 2022 Day 4 Part 1
+
+    """
     return indf
 
 
 def p2(indf):
-    """AoC 2002 Day 4 Part 2: """
+    """AoC 2022 Day 4 Part 2
+
+    """
     return indf
 
 

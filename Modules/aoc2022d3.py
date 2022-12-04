@@ -9,6 +9,10 @@ idx = list(map(chr, range(97, 123))) + list(map(chr, range(65, 91)))
 
 
 def initdf(infile):
+    """AoC 2022 Day 3 Init
+
+    Create a DataFrame from a text file.
+    """
     inlist = []
     with open(infile, 'r') as f:
         for x in f.read().split('\n'):
@@ -17,7 +21,10 @@ def initdf(infile):
 
 
 def p1(indf):
-    """AoC 2002 Day 3 Part 1: Find the common element in the two columns of a DataFrame"""
+    """AoC 2022 Day 3 Part 1
+
+    Find the common element in two columns of a DataFrame.
+    """
     points = 0
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += idx.index(list(set(x) & set(y))[0]) + 1
@@ -25,7 +32,10 @@ def p1(indf):
 
 
 def p2(indf):
-    """AoC 2002 Day 3 Part 1: Find the common element in three rows of a DataFrame"""
+    """AoC 2022 Day 3 Part 1
+
+    Find the common element in three rows of a DataFrame.
+    """
     points = 0
     elves = [(a + b) for a, b in zip(indf[0], indf[1])]
     while len(elves) > 0:

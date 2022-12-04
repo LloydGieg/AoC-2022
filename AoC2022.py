@@ -14,7 +14,7 @@ modules = 'Modules'
 
 for x in results:
     globals()[x] = importlib.import_module(f"{modules}.aoc2022{x}")
-    df = getattr(globals()[x], f"initdf")(f"{infiles}/{x}.txt")
+    df = getattr(globals()[x], 'initdf')(f"{infiles}/{x}.txt")
     if list(results.keys()).index(x) > 0:
         print()
     for y in range(2):

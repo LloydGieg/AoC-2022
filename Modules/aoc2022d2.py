@@ -10,11 +10,18 @@ us = ['X', 'Y', 'Z']
 
 
 def initdf(infile):
+    """AoC 2022 Day 2 Init
+
+    Create a DataFrame from a text file.
+    """
     return pandas.read_csv(infile, sep=' ', header=None)
 
 
 def p1(indf):
-    """AoC 2002 Day 2 Part 1: Rock/Paper/Scissors game"""
+    """AoC 2022 Day 2 Part 1
+
+    Play a Rock/Paper/Scissors game.
+    """
     points = 0
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += us.index(y) + 1
@@ -26,7 +33,10 @@ def p1(indf):
 
 
 def p2(indf):
-    """AoC 2002 Day 2 Part 2: Reformat input DataFrame and submit to Rock/Paper/Scissors game Part 1"""
+    """AoC 2022 Day 2 Part 2
+
+    Reformat the input DataFrame and submit to Rock/Paper/Scissors game Part 1.
+    """
     newus = []
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         newus.append(us[(them.index(x) + (us.index(y) - 1)) % len(us)])

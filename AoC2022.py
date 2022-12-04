@@ -10,10 +10,10 @@ results = {
 }
 
 infiles = 'InputFiles'
-modules = 'Modules'
+aoc2022pkg = 'aoc2022'
 
 for x in results:
-    globals()[x] = importlib.import_module(f"{modules}.aoc2022{x}")
+    globals()[x] = importlib.import_module(f"{aoc2022pkg}.aoc2022{x}")
     df = getattr(globals()[x], 'initdf')(f"{infiles}/{x}.txt")
     if list(results.keys()).index(x) > 0:
         print()

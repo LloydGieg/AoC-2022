@@ -11,10 +11,12 @@ def initdf(infile):
 
 
 def p1(indf):
+    """AoC 2002 Day 4 Part 1: """
     return indf
 
 
 def p2(indf):
+    """AoC 2002 Day 4 Part 2: """
     return indf
 
 

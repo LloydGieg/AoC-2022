@@ -17,6 +17,7 @@ def initdf(infile):
 
 
 def p1(indf):
+    """AoC 2002 Day 3 Part 1: Find the common element in the two columns of a DataFrame"""
     points = 0
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += idx.index(list(set(x) & set(y))[0]) + 1
@@ -24,6 +25,7 @@ def p1(indf):
 
 
 def p2(indf):
+    """AoC 2002 Day 3 Part 1: Find the common element in three rows of a DataFrame"""
     points = 0
     elves = [(a + b) for a, b in zip(indf[0], indf[1])]
     while len(elves) > 0:

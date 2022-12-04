@@ -15,10 +15,12 @@ def initdf(infile):
 
 
 def p1(indf):
+    """AoC 2002 Day 1 Part 1: Return the maximum value from a single-column DataFrame"""
     return indf[0].max()
 
 
 def p2(indf):
+    """AoC 2002 Day 1 Part 2: Return the sum of the largest three values in a single-column DataFrame"""
     return sum(indf[0].nlargest(3).tolist())
 
 

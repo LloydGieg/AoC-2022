@@ -14,6 +14,7 @@ def initdf(infile):
 
 
 def p1(indf):
+    """AoC 2002 Day 2 Part 1: Rock/Paper/Scissors game"""
     points = 0
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += us.index(y) + 1
@@ -25,6 +26,7 @@ def p1(indf):
 
 
 def p2(indf):
+    """AoC 2002 Day 2 Part 2: Rock/Paper/Scissors game"""
     newus = []
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         newus.append(us[(them.index(x) + (us.index(y) - 1)) % len(us)])

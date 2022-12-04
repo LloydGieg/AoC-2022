@@ -26,11 +26,12 @@ def p1(indf):
 
 
 def p2(indf):
-    """AoC 2002 Day 2 Part 2: Rock/Paper/Scissors game"""
+    """AoC 2002 Day 2 Part 2: Reformat input DataFrame and submit to Rock/Paper/Scissors game Part 1"""
     newus = []
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         newus.append(us[(them.index(x) + (us.index(y) - 1)) % len(us)])
-    return p1(pandas.DataFrame(list(zip(indf[0].tolist(), newus))))
+    newdf = pandas.DataFrame(list(zip(indf[0].tolist(), newus)))
+    return p1(newdf)
 
 
 if __name__ == '__main__':

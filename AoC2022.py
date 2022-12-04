@@ -24,4 +24,4 @@ for x in results:
             print("Correct ", end='')
         else:
             print("Incorrect ", end='')
-        print(f"({int((time.time() - start) * 1000000)} ns)")
+        print(f"({int((time.time() - start) * 1000)} ms)")

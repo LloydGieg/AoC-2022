@@ -3,13 +3,14 @@
 import pandas
 
 day = 2
+inputdir = '../InputFiles'
 
 them = ['A', 'B', 'C']
 us = ['X', 'Y', 'Z']
 
 
-def initdf(file):
-    return pandas.read_csv(file, sep=' ', header=None)
+def initdf(infile):
+    return pandas.read_csv(infile, sep=' ', header=None)
 
 
 def p1(indf):
@@ -31,7 +32,7 @@ def p2(indf):
 
 
 if __name__ == '__main__':
-    df = initdf(f"../InputFiles/d{day}.txt")
+    df = initdf(f"{inputdir}/d{day}.txt")
 
     for i in range(2):
         j = globals()[f"p{i + 1}"]

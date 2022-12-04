@@ -3,13 +3,14 @@
 import pandas
 
 day = 3
+inputdir = '../InputFiles'
 
 idx = list(map(chr, range(97, 123))) + list(map(chr, range(65, 91)))
 
 
-def initdf(file):
+def initdf(infile):
     inlist = []
-    with open(file, 'r') as f:
+    with open(infile, 'r') as f:
         for x in f.read().split('\n'):
             inlist.append([x[:int(len(x)/2)], x[int(len(x)/2):]])
     return pandas.DataFrame(inlist)
@@ -34,7 +35,7 @@ def p2(indf):
 
 
 if __name__ == '__main__':
-    df = initdf(f"../InputFiles/d{day}.txt")
+    df = initdf(f"{inputdir}/d{day}.txt")
 
     for i in range(2):
         j = globals()[f"p{i + 1}"]

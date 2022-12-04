@@ -2,24 +2,20 @@
 
 import pandas
 
-day = 1
+day = 4
 inputdir = '../InputFiles'
 
 
 def initdf(infile):
-    returnlist = []
-    with open(infile) as f:
-        for x in f.read().split('\n\n'):
-            returnlist.append(sum(list([int(x) for x in x.split('\n')])))
-    return pandas.DataFrame(returnlist)
+    return infile
 
 
 def p1(indf):
-    return indf[0].max()
+    return indf
 
 
 def p2(indf):
-    return sum(indf[0].nlargest(3).tolist())
+    return indf
 
 
 if __name__ == '__main__':

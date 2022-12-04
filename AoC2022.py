@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import time
+import importlib
 
 results = {
     'd1': [70296, 205381],
@@ -8,9 +9,12 @@ results = {
     'd3': [7903, 2548],
 }
 
+infiles = 'InputFiles'
+modules = 'Modules'
+
 for x in results:
-    globals()[x] = __import__(f"aoc2022{x}")
-    df = getattr(globals()[x], 'initdf')(f"InputFiles/{x}.txt")
+    globals()[x] = importlib.import_module(f"{modules}.aoc2022{x}")
+    df = getattr(globals()[x], f"initdf")(f"{infiles}/{x}.txt")
     if list(results.keys()).index(x) > 0:
         print()
     for y in range(2):

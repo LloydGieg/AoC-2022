@@ -22,7 +22,7 @@ def p2(indf):
 
 
 if __name__ == '__main__':
-    df = initdf(f"InputFiles/d{day}.txt")
+    df = initdf(f"../InputFiles/d{day}.txt")
 
     for i in range(2):
         j = globals()[f"p{i + 1}"]

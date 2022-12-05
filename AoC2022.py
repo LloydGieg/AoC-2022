@@ -3,14 +3,6 @@
 import time
 import importlib
 
-# results = {
-#     'd1': [70296, 205381],
-#     'd2': [15691, 12989],
-#     'd3': [7903, 2548],
-#     'd4': [560, 839],
-#     'd5': ['LJSVLTWQM', 'BRQWDBBJM'],
-# }
-
 infiles = 'InputFiles'
 aoc2022pkg = 'aoc2022'
 

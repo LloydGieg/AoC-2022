@@ -15,13 +15,14 @@ def initdf(infile):
 
     Create a DataFrame from a text file.
     """
+    global instructionsindex
     inlist = []
     with open(infile, 'r') as f:
         x, y = f.read().split('\n\n')
         if re.match(r'^.*? ([0-9]+)\s*$', x.splitlines()[-1]):
             for z in range(int(re.match(r'^.*? ([0-9]+)\s*$', x.splitlines()[-1]).group(1))):
                 inlist.append([])
-        globals()['instructionsindex'] = len(inlist)
+        instructionsindex = len(inlist)
         for z in x.split('\n')[:-1]:
             counter = 0
             for r in range(1, 35, 4):
@@ -30,11 +31,7 @@ def initdf(infile):
                 counter += 1
         for z in y.split('\n'):
             if instre.match(z):
-                inlist.append([
-                    int(instre.match(z).group(1)),
-                    int(instre.match(z).group(2)),
-                    int(instre.match(z).group(3))
-                ])
+                inlist.append([int(r) for r in instre.match(z).groups()])
     return pandas.DataFrame({0: inlist})
 
 
@@ -43,16 +40,11 @@ def p1(indf):
 
     Move elements between lists.
     """
-    returnlist = ''
-    stacks = indf[0].apply(list.copy)[:instructionsindex]
-    instructions = indf[0].apply(list.copy)[instructionsindex:]
-    for x in instructions:
-        qty, fromstack, tostack = x
-        for y in range(qty):
-            stacks[tostack - 1].append(stacks[fromstack - 1].pop())
-    for x in stacks:
-        returnlist += x[-1]
-    return returnlist
+    indata = indf[0].apply(list.copy)
+    for x, y, z in indata[instructionsindex:]:
+        indata[z - 1].extend(indata[y - 1][:-x - 1:-1])
+        del indata[y - 1][-x:]
+    return ''.join([x[-1] for x in indata[:instructionsindex]])
 
 
 def p2(indf):
@@ -60,16 +52,11 @@ def p2(indf):
 
     Move elements between lists.
     """
-    returnlist = ''
-    stacks = indf[0].apply(list.copy)[:instructionsindex]
-    instructions = indf[0].apply(list.copy)[instructionsindex:]
-    for x in instructions:
-        qty, fromstack, tostack = x
-        stacks[tostack - 1].extend(stacks[fromstack - 1][-qty:])
-        stacks[fromstack - 1] = stacks[fromstack - 1][:-qty]
-    for x in stacks:
-        returnlist += x[-1]
-    return returnlist
+    indata = indf[0].apply(list.copy)
+    for x, y, z in indata[instructionsindex:]:
+        indata[z - 1].extend(indata[y - 1][-x:])
+        del indata[y - 1][-x:]
+    return ''.join([x[-1] for x in indata[:instructionsindex]])
 
 
 if __name__ == '__main__':

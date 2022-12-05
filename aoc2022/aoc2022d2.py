@@ -29,7 +29,7 @@ def p1(indf):
             points += 3
         elif us[(them.index(x) + 1) % len(us)] == y:
             points += 6
-    return points
+    return str(points)
 
 
 def p2(indf):
@@ -41,7 +41,7 @@ def p2(indf):
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         newus.append(us[(them.index(x) + (us.index(y) - 1)) % len(us)])
     newdf = pandas.DataFrame(list(zip(indf[0].tolist(), newus)))
-    return p1(newdf)
+    return str(p1(newdf))
 
 
 if __name__ == '__main__':

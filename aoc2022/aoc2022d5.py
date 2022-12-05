@@ -7,6 +7,7 @@ day = 5
 inputdir = '../InputFiles'
 
 instre = re.compile(r'^move (\d+) from (\d+) to (\d+)$')
+cartlistre = re.compile(r'^.*? ([0-9]+)\s*$')
 instructionsindex = 0
 
 
@@ -16,22 +17,18 @@ def initdf(infile):
     Create a DataFrame from a text file.
     """
     global instructionsindex
-    inlist = []
     with open(infile, 'r') as f:
         x, y = f.read().split('\n\n')
-        if re.match(r'^.*? ([0-9]+)\s*$', x.splitlines()[-1]):
-            for z in range(int(re.match(r'^.*? ([0-9]+)\s*$', x.splitlines()[-1]).group(1))):
-                inlist.append([])
+        cartqty = int(cartlistre.match(x.splitlines()[-1]).group(1))
+        inlist = [[] for _ in range(cartqty)]
         instructionsindex = len(inlist)
+        cartlinelen = ((cartqty - 1) * 3) + cartqty + 1
         for z in x.split('\n')[:-1]:
-            counter = 0
-            for r in range(1, 35, 4):
-                if z.ljust(35)[r] != ' ':
-                    inlist[counter].insert(0, z[r])
-                counter += 1
+            for r, s in enumerate(range(1, cartlinelen, 4)):
+                if z.ljust(35)[s] != ' ':
+                    inlist[r].insert(0, z[s])
         for z in y.split('\n'):
-            if instre.match(z):
-                inlist.append([int(r) for r in instre.match(z).groups()])
+            inlist.append([int(r) for r in instre.match(z).groups()])
     return pandas.DataFrame({0: inlist})
 
 

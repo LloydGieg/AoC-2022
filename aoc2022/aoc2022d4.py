@@ -19,12 +19,8 @@ def p1(indf):
 
     Find overlapping sections in a DataFrame.
     """
-    overlaps = 0
-    for x in zip(indf[0], indf[1], indf[2], indf[3]):
-        y, z = [set(range(x[0], x[1] + 1)), set(range(x[2], x[3] + 1))]
-        if len(y & z) == min([len(y), len(z)]):
-            overlaps += 1
-    return overlaps
+    return str(len([[] for w, x, y, z in indf.values.tolist() if len(set(range(w, x + 1)) & set(range(y, z + 1))) ==
+                    min([len(set(range(w, x + 1))), len(set(range(y, z + 1)))])]))
 
 
 def p2(indf):
@@ -32,12 +28,7 @@ def p2(indf):
 
     Find overlapping sections in a DataFrame.
     """
-    overlaps = 0
-    for x in zip(indf[0], indf[1], indf[2], indf[3]):
-        y, z = [set(range(x[0], x[1] + 1)), set(range(x[2], x[3] + 1))]
-        if len(y & z):
-            overlaps += 1
-    return overlaps
+    return str(len([[] for w, x, y, z in indf.values.tolist() if len(set(range(w, x + 1)) & set(range(y, z + 1)))]))
 
 
 if __name__ == '__main__':

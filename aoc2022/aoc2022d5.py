@@ -44,8 +44,8 @@ def p1(indf):
     Move elements between lists.
     """
     returnlist = ''
-    stacks = [x for x in indf[0][:instructionsindex]]
-    instructions = [x for x in indf[0][instructionsindex:]]
+    stacks = indf[0].apply(list.copy)[:instructionsindex]
+    instructions = indf[0].apply(list.copy)[instructionsindex:]
     for x in instructions:
         qty, fromstack, tostack = x
         for y in range(qty):
@@ -60,10 +60,9 @@ def p2(indf):
 
     Move elements between lists.
     """
-    thisdf = initdf(f"{inputdir}/d{day}.txt")
     returnlist = ''
-    stacks = [x for x in thisdf[0][:instructionsindex]]
-    instructions = [x for x in thisdf[0][instructionsindex:]]
+    stacks = indf[0].apply(list.copy)[:instructionsindex]
+    instructions = indf[0].apply(list.copy)[instructionsindex:]
     for x in instructions:
         qty, fromstack, tostack = x
         stacks[tostack - 1].extend(stacks[fromstack - 1][-qty:])

@@ -19,13 +19,15 @@ More details at http://adventofcode.com/
 
 ### Example output:
 ```
-Day 1 Part 1: Correct (0 ms)
+Day 1 Part 1: Correct (1 ms)
 Day 1 Part 2: Correct (1 ms)
 
-Day 2 Part 1: Correct (2 ms)
-Day 2 Part 2: Correct (4 ms)
+Day 2 Part 1: Correct (4 ms)
+Day 2 Part 2: Correct (6 ms)
 
 Day 3 Part 1: Correct (1 ms)
-Day 3 Part 2: Correct (0 ms)
 [snip]
+
+There are 0 incorrect parts
+Total time: 678 ms
 ```

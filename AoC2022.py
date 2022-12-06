@@ -18,6 +18,7 @@ with open(f"{infiles}/answerkey.txt", 'r') as f:
     for x, y, z in [r.split(', ') for r in f.read().split('\n') if r != '']:
         answerkey[x] = [y, z]
 
+incorrect = 0
 start = time.time()
 for x in answerkey:
     globals()[x] = importlib.import_module(f"{aoc2022pkg}.aoc2022{x}")
@@ -28,8 +29,10 @@ for x in answerkey:
         if getattr(globals()[x], f"p{y + 1}")(df) == answerkey[x][y]:
             print("Correct ", end='')
         else:
+            incorrect += 1
             print("Incorrect ", end='')
         print(f"({int((time.time() - ystart) * timeunits[timeunit])} {timeunit})")
     print()
 
+print(f"There are {incorrect} incorrect parts")
 print(f"Total time: {int((time.time() - start) * timeunits[timeunit])} {timeunit}")

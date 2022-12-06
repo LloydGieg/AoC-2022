@@ -5,6 +5,8 @@ import pandas
 day = 6
 inputdir = '../InputFiles'
 
+chars = 4
+
 
 def initdf(infile):
     """AoC 2022 Day 6 Init
@@ -20,7 +22,6 @@ def p1(indf):
 
     Find the first unique 4-character substring in a string
     """
-    chars = 4
     indata = indf[0][0]
     inlist = [indata[x:x + chars] for x in range(len(indata) - chars)]
     for x in inlist:
@@ -33,12 +34,9 @@ def p2(indf):
 
     Find the first unique 14-character substring in a string
     """
+    global chars
     chars = 14
-    indata = indf[0][0]
-    inlist = [indata[x:x + chars] for x in range(len(indata) - chars)]
-    for x in inlist:
-        if len(set(x)) == chars:
-            return str(inlist.index(x) + chars)
+    return p1(indf)
 
 
 if __name__ == '__main__':

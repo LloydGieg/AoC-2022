@@ -34,7 +34,7 @@ def initdf(infile):
 
 
 def p1(indf):
-    """AoC 2022 Day 6 Part 1
+    """AoC 2022 Day 7 Part 1
 
     Find the size of directories to delete
     """
@@ -42,7 +42,7 @@ def p1(indf):
 
 
 def p2(indf):
-    """AoC 2022 Day 6 Part 2
+    """AoC 2022 Day 7 Part 2
 
     Free up disk space
     """

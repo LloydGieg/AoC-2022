@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import pandas
+from collections import defaultdict
 
 day = 7
 inputdir = '../InputFiles'
@@ -11,22 +12,42 @@ def initdf(infile):
 
     Create a DataFrame from a text file.
     """
-    return infile
+    inlist = defaultdict(int)
+    curdir = []
+    with open(infile, 'r') as f:
+        for line in f.read().split('\n'):
+            thisline = line.split(' ')
+            if thisline[0] == '$':
+                if thisline[1] == 'cd':
+                    if thisline[2] == '/':
+                        curdir = ['root']
+                    elif thisline[2] == '..':
+                        del curdir[-1]
+                    else:
+                        curdir.append(thisline[2])
+            else:
+                if thisline[0] != 'dir':
+                    for x in range(len(curdir)):
+                        inlist['-'.join(curdir[0:x + 1])] += int(thisline[0])
+    outdf = pandas.DataFrame({'size': inlist.values()}, index=inlist.keys())
+    return outdf
 
 
 def p1(indf):
     """AoC 2022 Day 6 Part 1
 
+    Find the size of directories to delete
     """
-    return indf
+    return str(sum([x for x in indf[indf['size'] <= 100000]['size']]))
 
 
 def p2(indf):
     """AoC 2022 Day 6 Part 2
 
-    Find the first unique 14-character substring in a string
+    Free up disk space
     """
-    return indf
+    freespace = 70000000 - indf.loc['root']['size']
+    return [str(x) for x in sorted(indf['size'].tolist()) if freespace + x >= 30000000][0]
 
 
 if __name__ == '__main__':

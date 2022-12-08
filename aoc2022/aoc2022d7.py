@@ -20,7 +20,7 @@ def initdf(infile):
             if thisline[0] == '$':
                 if thisline[1] == 'cd':
                     if thisline[2] == '/':
-                        curdir = ['root']
+                        curdir = ['/']
                     elif thisline[2] == '..':
                         del curdir[-1]
                     else:
@@ -28,7 +28,7 @@ def initdf(infile):
             else:
                 if thisline[0] != 'dir':
                     for x in range(len(curdir)):
-                        inlist['-'.join(curdir[0:x + 1])] += int(thisline[0])
+                        inlist['/'.join(curdir[0:x + 1]).replace('//', '/')] += int(thisline[0])
     outdf = pandas.DataFrame({'size': inlist.values()}, index=inlist.keys())
     return outdf
 
@@ -46,7 +46,7 @@ def p2(indf):
 
     Free up disk space
     """
-    freespace = 70000000 - indf.loc['root']['size']
+    freespace = 70000000 - indf.loc['/']['size']
     return [str(x) for x in sorted(indf['size'].tolist()) if freespace + x >= 30000000][0]
 
 

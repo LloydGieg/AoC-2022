@@ -29,8 +29,7 @@ def initdf(infile):
                 if thisline[0] != 'dir':
                     for x in range(len(curdir)):
                         inlist['/'.join(curdir[0:x + 1]).replace('//', '/')] += int(thisline[0])
-    outdf = pandas.DataFrame({'size': inlist.values()}, index=inlist.keys())
-    return outdf
+    return pandas.DataFrame({'size': inlist.values()}, index=inlist.keys())
 
 
 def p1(indf):

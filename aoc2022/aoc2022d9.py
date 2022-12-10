@@ -7,7 +7,7 @@ inputdir = '../InputFiles'
 
 
 def initdf(infile):
-    """AoC 2022 Day 8 Init
+    """AoC 2022 Day 9 Init
 
     Create a DataFrame from a text file.
     """
@@ -21,7 +21,7 @@ def initdf(infile):
 
 
 def p1(indf):
-    """AoC 2022 Day 8 Part 1
+    """AoC 2022 Day 9 Part 1
 
     Track the number of unique tail positions on a grid
     """
@@ -79,12 +79,10 @@ def move(hpos, tpos):
 
 
 def p2(indf):
-    """AoC 2022 Day 8 Part 2
+    """AoC 2022 Day 9 Part 2
 
     Track the number of unique tail positions on a grid
     """
-    # 2544 too low
-    # 2641 too high
     moves = indf.values.tolist()
     global positions
     global p2places

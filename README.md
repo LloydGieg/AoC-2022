@@ -12,7 +12,12 @@ More details at http://adventofcode.com/
 * pandas module
 
 ## Install
+Make sure you have the pandas module installed:
+
 ```pip3 install pandas```
+
+Read the README.txt file in the InputFiles directory. You'll need to store your puzzle inputs there along with your 
+answer key in the appropriate format.
 
 ## Usage
 ```python3 AoC2022.py```

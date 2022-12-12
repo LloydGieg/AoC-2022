@@ -25,7 +25,7 @@ for x in answerkey:
     df = getattr(globals()[x], 'initdf')(f"{infiles}/{x}.txt")
     for y in range(2):
         ystart = time.time()
-        print(f"Day {x[1]} Part {y + 1}: ", end='')
+        print(f"Day {x[1:]} Part {y + 1}: ", end='')
         if getattr(globals()[x], f"p{y + 1}")(df) == answerkey[x][y]:
             print("Correct ", end='')
         else:

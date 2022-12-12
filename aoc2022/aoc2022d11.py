@@ -76,7 +76,7 @@ def p1(indf):
     outresult = 1
     for x in range(2):
         outresult *= sorted([indict[y][5] for y in indict], reverse=True)[x]
-    return str(outresult)
+    return outresult
 
 
 def p2(indf):
@@ -122,7 +122,7 @@ def p2(indf):
     outresult = 1
     for x in range(2):
         outresult *= sorted([indict[y][5] for y in indict], reverse=True)[x]
-    return str(outresult)
+    return outresult
 
 
 if __name__ == '__main__':

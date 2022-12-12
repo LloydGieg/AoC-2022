@@ -26,7 +26,7 @@ def p1(indf):
     inlist = [indata[x:x + chars] for x in range(len(indata) - chars)]
     for x in inlist:
         if len(set(x)) == chars:
-            return str(inlist.index(x) + chars)
+            return inlist.index(x) + chars
 
 
 def p2(indf):

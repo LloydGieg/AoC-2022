@@ -52,40 +52,7 @@ def p1(indf):
                 trees.add(f"{x},{y}")
                 height = indf[x][y]
 
-    return str(len(trees))
-
-
-def checktree(indf, x, y):
-    global p2trees
-    p2trees[f"{x},{y}"] = 1
-    # South
-    visibility = 0
-    for z in range(y+1, indf.shape[0]):
-        visibility += 1
-        if indf[x][z] >= indf[x][y]:
-            break
-    p2trees[f"{x},{y}"] *= visibility
-    # North
-    visibility = 0
-    for z in range(y-1, -1, -1):
-        visibility += 1
-        if indf[x][z] >= indf[x][y]:
-            break
-    p2trees[f"{x},{y}"] *= visibility
-    # East
-    visibility = 0
-    for z in range(x+1, indf.shape[1]):
-        visibility += 1
-        if indf[z][y] >= indf[x][y]:
-            break
-    p2trees[f"{x},{y}"] *= visibility
-    # West
-    visibility = 0
-    for z in range(x-1, -1, -1):
-        visibility += 1
-        if indf[z][y] >= indf[x][y]:
-            break
-    p2trees[f"{x},{y}"] *= visibility
+    return len(trees)
 
 
 def p2(indf):
@@ -93,13 +60,52 @@ def p2(indf):
 
     Find maximum visibility from the trees.
     """
-    global p2trees
+    trees = {}
+    for x in range(indf.shape[1]):
+        for y in range(indf.shape[0]):
+            trees[f"{x},{y}"] = 1
 
-    for x in range(1, indf.shape[0]-1):
-        for y in range(1, indf.shape[1]-1):
-            checktree(indf, x, y)
+    for x in range(1, indf.shape[1]-1):
+        for y in range(1, indf.shape[0]-1):
+            height = indf[x][y]
+            visibility = 0
+            for z in range(y+1, indf.shape[0]):
+                visibility += 1
+                if indf[x][z] >= height:
+                    break
+            trees[f"{x},{y}"] *= (visibility or 1)
 
-    return str(max(p2trees.values()))
+    for x in range(1, indf.shape[1]-1):
+        for y in range(indf.shape[0]-2, 0, -1):
+            height = indf[x][y]
+            visibility = 0
+            for z in range(y-1, -1, -1):
+                visibility += 1
+                if indf[x][z] >= height:
+                    break
+            trees[f"{x},{y}"] *= visibility
+
+    for y in range(1, indf.shape[0]-1):
+        for x in range(1, indf.shape[1]-1):
+            height = indf[x][y]
+            visibility = 0
+            for z in range(x+1, indf.shape[1]):
+                visibility += 1
+                if indf[z][y] >= height:
+                    break
+            trees[f"{x},{y}"] *= visibility
+
+    for y in range(1, indf.shape[0]-1):
+        for x in range(indf.shape[1]-2, 0, -1):
+            height = indf[x][y]
+            visibility = 0
+            for z in range(x-1, -1, -1):
+                visibility += 1
+                if indf[z][y] >= height:
+                    break
+            trees[f"{x},{y}"] *= visibility
+
+    return max(trees.values())
 
 
 if __name__ == '__main__':

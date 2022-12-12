@@ -23,7 +23,7 @@ def p1(indf):
 
     Return the maximum value from a single-column DataFrame.
     """
-    return str(indf[0].max())
+    return indf[0].max()
 
 
 def p2(indf):
@@ -31,7 +31,7 @@ def p2(indf):
 
     Return the sum of the largest three values in a single-column DataFrame.
     """
-    return str(sum(indf[0].nlargest(3).tolist()))
+    return sum(indf[0].nlargest(3).tolist())
 
 
 if __name__ == '__main__':

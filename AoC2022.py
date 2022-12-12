@@ -26,7 +26,7 @@ for x in answerkey:
     for y in range(2):
         ystart = time.time()
         print(f"Day {x[1:]} Part {y + 1}: ", end='')
-        if getattr(globals()[x], f"p{y + 1}")(df) == answerkey[x][y]:
+        if str(getattr(globals()[x], f"p{y + 1}")(df)) == answerkey[x][y]:
             print("Correct ", end='')
         else:
             incorrect += 1

@@ -37,7 +37,7 @@ def p1(indf):
                 if (cycle - 20) % 40 == 0:
                     vals.append(reg * cycle)
             reg += int(inlist[x][1])
-    return str(sum(vals))
+    return sum(vals)
 
 
 def p2(indf):

@@ -28,7 +28,7 @@ def p1(indf):
     points = 0
     for x, y in [[a, b] for a, b in zip(indf[0], indf[1])]:
         points += idx.index(list(set(x) & set(y))[0]) + 1
-    return str(points)
+    return points
 
 
 def p2(indf):
@@ -43,7 +43,7 @@ def p2(indf):
         for x in range(3):
             group.append(elves.pop(-1))
         points += idx.index(list(set(group[0]) & set(group[1]) & set(group[2]))[0]) + 1
-    return str(points)
+    return points
 
 
 if __name__ == '__main__':

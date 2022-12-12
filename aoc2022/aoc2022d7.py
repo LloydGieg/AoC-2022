@@ -37,7 +37,7 @@ def p1(indf):
 
     Find the size of directories to delete
     """
-    return str(sum([x for x in indf[indf['size'] <= 100000]['size']]))
+    return sum([x for x in indf[indf['size'] <= 100000]['size']])
 
 
 def p2(indf):
@@ -46,7 +46,7 @@ def p2(indf):
     Free up disk space
     """
     freespace = 70000000 - indf.loc['/']['size']
-    return [str(x) for x in sorted(indf['size'].tolist()) if freespace + x >= 30000000][0]
+    return [x for x in sorted(indf['size'].tolist()) if freespace + x >= 30000000][0]
 
 
 if __name__ == '__main__':

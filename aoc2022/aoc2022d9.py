@@ -51,7 +51,7 @@ def p1(indf):
                 if tpos[1] - hpos[1] > 1:
                     tpos = [hpos[0], hpos[1]+1]
                     places.add(f"{tpos[0]},{tpos[1]}")
-    return str(len(places))
+    return len(places)
 
 
 positions = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
@@ -99,7 +99,7 @@ def p2(indf):
             for z in range(len(positions)-1):
                 positions[z+1] = move(positions[z], positions[z+1])
             p2places.add(f"{positions[9][0]},{positions[9][1]}")
-    return str(len(p2places))
+    return len(p2places)
 
 
 if __name__ == '__main__':

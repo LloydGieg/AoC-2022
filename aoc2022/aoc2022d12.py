@@ -72,25 +72,29 @@ def p1(indf):
             if djikstra[x][y] == 999:
                 continue
             if x > 0:
-                if inlist[x][y] + 1 >= inlist[x - 1][y]:
-                    if djikstra[x][y] + 1 < djikstra[x - 1][y]:
-                        djikstra[x - 1][y] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x - 1},{y}" in unvisited:
+                    if inlist[x][y] + 1 >= inlist[x - 1][y]:
+                        if djikstra[x][y] + 1 < djikstra[x - 1][y]:
+                            djikstra[x - 1][y] = djikstra[x][y] + 1
+                            changed = 1
             if x < len(djikstra) - 1:
-                if inlist[x][y] +1 >= inlist[x + 1][y]:
-                    if djikstra[x][y] + 1 < djikstra[x + 1][y]:
-                        djikstra[x + 1][y] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x + 1},{y}" in unvisited:
+                    if inlist[x][y] +1 >= inlist[x + 1][y]:
+                        if djikstra[x][y] + 1 < djikstra[x + 1][y]:
+                            djikstra[x + 1][y] = djikstra[x][y] + 1
+                            changed = 1
             if y > 0:
-                if inlist[x][y] + 1 >= inlist[x][y - 1]:
-                    if djikstra[x][y] + 1 < djikstra[x][y - 1]:
-                        djikstra[x][y - 1] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x},{y - 1}" in unvisited:
+                    if inlist[x][y] + 1 >= inlist[x][y - 1]:
+                        if djikstra[x][y] + 1 < djikstra[x][y - 1]:
+                            djikstra[x][y - 1] = djikstra[x][y] + 1
+                            changed = 1
             if y < len(djikstra[x]) - 1:
-                if inlist[x][y] + 1 >= inlist[x][y + 1]:
-                    if djikstra[x][y] + 1 < djikstra[x][y + 1]:
-                        djikstra[x][y + 1] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x},{y + 1}" in unvisited:
+                    if inlist[x][y] + 1 >= inlist[x][y + 1]:
+                        if djikstra[x][y] + 1 < djikstra[x][y + 1]:
+                            djikstra[x][y + 1] = djikstra[x][y] + 1
+                            changed = 1
             unvisited.remove(f"{x},{y}")
         if changed == 0:
             break
@@ -128,25 +132,29 @@ def p2(indf):
             if djikstra[x][y] == 999:
                 continue
             if x > 0:
-                if inlist[x][y] - 1 <= inlist[x - 1][y]:
-                    if djikstra[x][y] + 1 < djikstra[x - 1][y]:
-                        djikstra[x - 1][y] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x - 1},{y}" in unvisited:
+                    if inlist[x][y] - 1 <= inlist[x - 1][y]:
+                        if djikstra[x][y] + 1 < djikstra[x - 1][y]:
+                            djikstra[x - 1][y] = djikstra[x][y] + 1
+                            changed = 1
             if x < len(djikstra) - 1:
-                if inlist[x][y] - 1 <= inlist[x + 1][y]:
-                    if djikstra[x][y] + 1 < djikstra[x + 1][y]:
-                        djikstra[x + 1][y] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x + 1},{y}" in unvisited:
+                    if inlist[x][y] - 1 <= inlist[x + 1][y]:
+                        if djikstra[x][y] + 1 < djikstra[x + 1][y]:
+                            djikstra[x + 1][y] = djikstra[x][y] + 1
+                            changed = 1
             if y > 0:
-                if inlist[x][y] - 1 <= inlist[x][y - 1]:
-                    if djikstra[x][y] + 1 < djikstra[x][y - 1]:
-                        djikstra[x][y - 1] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x},{y - 1}" in unvisited:
+                    if inlist[x][y] - 1 <= inlist[x][y - 1]:
+                        if djikstra[x][y] + 1 < djikstra[x][y - 1]:
+                            djikstra[x][y - 1] = djikstra[x][y] + 1
+                            changed = 1
             if y < len(djikstra[x]) - 1:
-                if inlist[x][y] - 1 <= inlist[x][y + 1]:
-                    if djikstra[x][y] + 1 < djikstra[x][y + 1]:
-                        djikstra[x][y + 1] = djikstra[x][y] + 1
-                        changed = 1
+                if f"{x},{y + 1}" in unvisited:
+                    if inlist[x][y] - 1 <= inlist[x][y + 1]:
+                        if djikstra[x][y] + 1 < djikstra[x][y + 1]:
+                            djikstra[x][y + 1] = djikstra[x][y] + 1
+                            changed = 1
             unvisited.remove(f"{x},{y}")
         if changed == 0:
             break

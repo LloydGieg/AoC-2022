@@ -16,7 +16,6 @@ def initdf(infile):
 
     Create a DataFrame from a text file.
     """
-    global inlist
     outlist = []
     with open(infile, 'r') as f:
         for x in f.read().split('\n'):

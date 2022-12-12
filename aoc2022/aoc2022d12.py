@@ -79,7 +79,7 @@ def p1(indf):
                             changed = 1
             if x < len(djikstra) - 1:
                 if f"{x + 1},{y}" in unvisited:
-                    if inlist[x][y] +1 >= inlist[x + 1][y]:
+                    if inlist[x][y] + 1 >= inlist[x + 1][y]:
                         if djikstra[x][y] + 1 < djikstra[x + 1][y]:
                             djikstra[x + 1][y] = djikstra[x][y] + 1
                             changed = 1

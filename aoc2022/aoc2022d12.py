@@ -43,28 +43,6 @@ def initinlist(indf):
                 inlist[x][y] = alphavalues[inlist[x][y]]
 
 
-def checkpos(x, y):
-    global inlist, djikstra
-    adjacents = []
-    if x > 0:
-        if inlist[x][y] - inlist[x-1][y] <= 1:
-            if djikstra[x-1][y] != '':
-                adjacents.append(djikstra[x-1][y])
-    if x < len(djikstra)-1:
-        if inlist[x][y] - inlist[x+1][y] <= 1:
-            if djikstra[x+1][y] != '':
-                adjacents.append(djikstra[x+1][y])
-    if y > 0:
-        if inlist[x][y] - inlist[x][y-1] <= 1:
-            if djikstra[x][y-1] != '':
-                adjacents.append(djikstra[x][y-1])
-    if y < len(djikstra[x])-1:
-        if inlist[x][y] - inlist[x][y+1] <= 1:
-            if djikstra[x][y+1] != '':
-                adjacents.append(djikstra[x][y+1])
-    return adjacents
-
-
 def p1(indf):
     """AoC 2022 Day 12 Part 1
 
@@ -79,11 +57,10 @@ def p1(indf):
     for x in range(len(inlist)):
         djikstra.append([])
         for y in range(len(inlist[x])):
-            djikstra[x].append('')
+            djikstra[x].append(999)
             unvisited.add(f"{x},{y}")
 
     djikstra[start[0]][start[1]] = 0
-    unvisited.remove(f"{start[0]},{start[1]}")
 
     while len(unvisited) > 0:
         tempvisited = unvisited.copy()
@@ -92,27 +69,29 @@ def p1(indf):
             x, y = z.split(',')
             x = int(x)
             y = int(y)
-            adjacents = []
+            if djikstra[x][y] == 999:
+                continue
             if x > 0:
-                if inlist[x][y] - inlist[x - 1][y] <= 1:
-                    if djikstra[x - 1][y] != '':
-                        adjacents.append(djikstra[x - 1][y])
+                if inlist[x][y] + 1 >= inlist[x - 1][y]:
+                    if djikstra[x][y] + 1 < djikstra[x - 1][y]:
+                        djikstra[x - 1][y] = djikstra[x][y] + 1
+                        changed = 1
             if x < len(djikstra) - 1:
-                if inlist[x][y] - inlist[x + 1][y] <= 1:
-                    if djikstra[x + 1][y] != '':
-                        adjacents.append(djikstra[x + 1][y])
+                if inlist[x][y] +1 >= inlist[x + 1][y]:
+                    if djikstra[x][y] + 1 < djikstra[x + 1][y]:
+                        djikstra[x + 1][y] = djikstra[x][y] + 1
+                        changed = 1
             if y > 0:
-                if inlist[x][y] - inlist[x][y - 1] <= 1:
-                    if djikstra[x][y - 1] != '':
-                        adjacents.append(djikstra[x][y - 1])
+                if inlist[x][y] + 1 >= inlist[x][y - 1]:
+                    if djikstra[x][y] + 1 < djikstra[x][y - 1]:
+                        djikstra[x][y - 1] = djikstra[x][y] + 1
+                        changed = 1
             if y < len(djikstra[x]) - 1:
-                if inlist[x][y] - inlist[x][y + 1] <= 1:
-                    if djikstra[x][y + 1] != '':
-                        adjacents.append(djikstra[x][y + 1])
-            if len(adjacents) > 0:
-                changed += 1
-                djikstra[x][y] = min(adjacents) + 1
-                unvisited.remove(z)
+                if inlist[x][y] + 1 >= inlist[x][y + 1]:
+                    if djikstra[x][y] + 1 < djikstra[x][y + 1]:
+                        djikstra[x][y + 1] = djikstra[x][y] + 1
+                        changed = 1
+            unvisited.remove(f"{x},{y}")
         if changed == 0:
             break
 
@@ -134,11 +113,10 @@ def p2(indf):
     for x in range(len(inlist)):
         djikstra.append([])
         for y in range(len(inlist[x])):
-            djikstra[x].append('')
+            djikstra[x].append(999)
             unvisited.add(f"{x},{y}")
 
     djikstra[start[0]][start[1]] = 0
-    unvisited.remove(f"{start[0]},{start[1]}")
 
     while len(unvisited) > 0:
         tempvisited = unvisited.copy()
@@ -147,27 +125,29 @@ def p2(indf):
             x, y = z.split(',')
             x = int(x)
             y = int(y)
-            adjacents = []
+            if djikstra[x][y] == 999:
+                continue
             if x > 0:
-                if inlist[x][y] - inlist[x - 1][y] >= -1:
-                    if djikstra[x - 1][y] != '':
-                        adjacents.append(djikstra[x - 1][y])
+                if inlist[x][y] - 1 <= inlist[x - 1][y]:
+                    if djikstra[x][y] + 1 < djikstra[x - 1][y]:
+                        djikstra[x - 1][y] = djikstra[x][y] + 1
+                        changed = 1
             if x < len(djikstra) - 1:
-                if inlist[x][y] - inlist[x + 1][y] >= -1:
-                    if djikstra[x + 1][y] != '':
-                        adjacents.append(djikstra[x + 1][y])
+                if inlist[x][y] - 1 <= inlist[x + 1][y]:
+                    if djikstra[x][y] + 1 < djikstra[x + 1][y]:
+                        djikstra[x + 1][y] = djikstra[x][y] + 1
+                        changed = 1
             if y > 0:
-                if inlist[x][y] - inlist[x][y - 1] >= -1:
-                    if djikstra[x][y - 1] != '':
-                        adjacents.append(djikstra[x][y - 1])
+                if inlist[x][y] - 1 <= inlist[x][y - 1]:
+                    if djikstra[x][y] + 1 < djikstra[x][y - 1]:
+                        djikstra[x][y - 1] = djikstra[x][y] + 1
+                        changed = 1
             if y < len(djikstra[x]) - 1:
-                if inlist[x][y] - inlist[x][y + 1] >= -1:
-                    if djikstra[x][y + 1] != '':
-                        adjacents.append(djikstra[x][y + 1])
-            if len(adjacents) > 0:
-                changed += 1
-                djikstra[x][y] = min(adjacents) + 1
-                unvisited.remove(z)
+                if inlist[x][y] - 1 <= inlist[x][y + 1]:
+                    if djikstra[x][y] + 1 < djikstra[x][y + 1]:
+                        djikstra[x][y + 1] = djikstra[x][y] + 1
+                        changed = 1
+            unvisited.remove(f"{x},{y}")
         if changed == 0:
             break
 
@@ -175,7 +155,6 @@ def p2(indf):
     for x in range(len(inlist)):
         for y in range(len(inlist[x])):
             if inlist[x][y] == 1:
-                # print(f"{x},{y} is {djikstra[x][y]}")
                 if djikstra[x][y]:
                     lowpoints.append(djikstra[x][y])
     return min(lowpoints)

@@ -8,7 +8,7 @@ inputdir = '../InputFiles'
 inlist = []
 start = []
 end = []
-djikstra = []
+dijkstra = []
 
 
 def initdf(infile):
@@ -48,19 +48,19 @@ def p1(indf):
 
     Find the distance from a single start point to a single end point
     """
-    global inlist, djikstra, start, end
+    global inlist, dijkstra, start, end
 
     initinlist(indf)
 
-    djikstra = []
+    dijkstra = []
     unvisited = set()
     for x in range(len(inlist)):
-        djikstra.append([])
+        dijkstra.append([])
         for y in range(len(inlist[x])):
-            djikstra[x].append(999)
+            dijkstra[x].append(999)
             unvisited.add(f"{x},{y}")
 
-    djikstra[start[0]][start[1]] = 0
+    dijkstra[start[0]][start[1]] = 0
 
     while len(unvisited) > 0:
         tempvisited = unvisited.copy()
@@ -69,37 +69,37 @@ def p1(indf):
             x, y = z.split(',')
             x = int(x)
             y = int(y)
-            if djikstra[x][y] == 999:
+            if dijkstra[x][y] == 999:
                 continue
             if x > 0:
                 if f"{x - 1},{y}" in unvisited:
                     if inlist[x][y] + 1 >= inlist[x - 1][y]:
-                        if djikstra[x][y] + 1 < djikstra[x - 1][y]:
-                            djikstra[x - 1][y] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x - 1][y]:
+                            dijkstra[x - 1][y] = dijkstra[x][y] + 1
                             changed = 1
-            if x < len(djikstra) - 1:
+            if x < len(dijkstra) - 1:
                 if f"{x + 1},{y}" in unvisited:
                     if inlist[x][y] + 1 >= inlist[x + 1][y]:
-                        if djikstra[x][y] + 1 < djikstra[x + 1][y]:
-                            djikstra[x + 1][y] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x + 1][y]:
+                            dijkstra[x + 1][y] = dijkstra[x][y] + 1
                             changed = 1
             if y > 0:
                 if f"{x},{y - 1}" in unvisited:
                     if inlist[x][y] + 1 >= inlist[x][y - 1]:
-                        if djikstra[x][y] + 1 < djikstra[x][y - 1]:
-                            djikstra[x][y - 1] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x][y - 1]:
+                            dijkstra[x][y - 1] = dijkstra[x][y] + 1
                             changed = 1
-            if y < len(djikstra[x]) - 1:
+            if y < len(dijkstra[x]) - 1:
                 if f"{x},{y + 1}" in unvisited:
                     if inlist[x][y] + 1 >= inlist[x][y + 1]:
-                        if djikstra[x][y] + 1 < djikstra[x][y + 1]:
-                            djikstra[x][y + 1] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x][y + 1]:
+                            dijkstra[x][y + 1] = dijkstra[x][y] + 1
                             changed = 1
             unvisited.remove(f"{x},{y}")
         if changed == 0:
             break
 
-    return djikstra[end[0]][end[1]] or 999
+    return dijkstra[end[0]][end[1]] or 999
 
 
 def p2(indf):
@@ -107,20 +107,20 @@ def p2(indf):
 
     Find the lowest distance from multiple start points to a single end point
     """
-    global inlist, djikstra, start, end
+    global inlist, dijkstra, start, end
 
     initinlist(indf)
     start = end
 
-    djikstra = []
+    dijkstra = []
     unvisited = set()
     for x in range(len(inlist)):
-        djikstra.append([])
+        dijkstra.append([])
         for y in range(len(inlist[x])):
-            djikstra[x].append(999)
+            dijkstra[x].append(999)
             unvisited.add(f"{x},{y}")
 
-    djikstra[start[0]][start[1]] = 0
+    dijkstra[start[0]][start[1]] = 0
 
     while len(unvisited) > 0:
         tempvisited = unvisited.copy()
@@ -129,31 +129,31 @@ def p2(indf):
             x, y = z.split(',')
             x = int(x)
             y = int(y)
-            if djikstra[x][y] == 999:
+            if dijkstra[x][y] == 999:
                 continue
             if x > 0:
                 if f"{x - 1},{y}" in unvisited:
                     if inlist[x][y] - 1 <= inlist[x - 1][y]:
-                        if djikstra[x][y] + 1 < djikstra[x - 1][y]:
-                            djikstra[x - 1][y] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x - 1][y]:
+                            dijkstra[x - 1][y] = dijkstra[x][y] + 1
                             changed = 1
-            if x < len(djikstra) - 1:
+            if x < len(dijkstra) - 1:
                 if f"{x + 1},{y}" in unvisited:
                     if inlist[x][y] - 1 <= inlist[x + 1][y]:
-                        if djikstra[x][y] + 1 < djikstra[x + 1][y]:
-                            djikstra[x + 1][y] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x + 1][y]:
+                            dijkstra[x + 1][y] = dijkstra[x][y] + 1
                             changed = 1
             if y > 0:
                 if f"{x},{y - 1}" in unvisited:
                     if inlist[x][y] - 1 <= inlist[x][y - 1]:
-                        if djikstra[x][y] + 1 < djikstra[x][y - 1]:
-                            djikstra[x][y - 1] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x][y - 1]:
+                            dijkstra[x][y - 1] = dijkstra[x][y] + 1
                             changed = 1
-            if y < len(djikstra[x]) - 1:
+            if y < len(dijkstra[x]) - 1:
                 if f"{x},{y + 1}" in unvisited:
                     if inlist[x][y] - 1 <= inlist[x][y + 1]:
-                        if djikstra[x][y] + 1 < djikstra[x][y + 1]:
-                            djikstra[x][y + 1] = djikstra[x][y] + 1
+                        if dijkstra[x][y] + 1 < dijkstra[x][y + 1]:
+                            dijkstra[x][y + 1] = dijkstra[x][y] + 1
                             changed = 1
             unvisited.remove(f"{x},{y}")
         if changed == 0:
@@ -163,8 +163,8 @@ def p2(indf):
     for x in range(len(inlist)):
         for y in range(len(inlist[x])):
             if inlist[x][y] == 1:
-                if djikstra[x][y]:
-                    lowpoints.append(djikstra[x][y])
+                if dijkstra[x][y]:
+                    lowpoints.append(dijkstra[x][y])
     return min(lowpoints)
 
 

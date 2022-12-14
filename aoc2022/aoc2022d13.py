@@ -78,14 +78,17 @@ def p2(indf):
     """
     d1 = '[[2]]'
     d2 = '[[6]]'
-    inlist = indf['left'].tolist() + indf['right'].tolist()
-    inlist.append(d1)
-    inlist.append(d2)
+    inlist = indf['left'].tolist() + indf['right'].tolist() + [d1] + [d2]
     outlist = json.loads(json.dumps({str(x): y for x, y in enumerate(inlist)}))
     change = 1
     while change == 1:
         change = 0
-        for x in range(len(outlist)-1):
+        for x in range(0, len(outlist) - 1, 2):
+            outcopy = outlist.copy()
+            if cmplist(json.loads(outcopy[str(x)]), json.loads(outcopy[str(x + 1)])) == 'wrong':
+                change = 1
+                outlist[str(x)], outlist[str(x + 1)] = outlist[str(x + 1)], outlist[str(x)]
+        for x in range(1, len(outlist) - 2, 2):
             outcopy = outlist.copy()
             if cmplist(json.loads(outcopy[str(x)]), json.loads(outcopy[str(x + 1)])) == 'wrong':
                 change = 1

@@ -48,9 +48,9 @@ def p1(indf):
             sx[x] - (dist[x] - ydist),
             sx[x] + (dist[x] - ydist) + 1
         ):
-            occupado.add(f"{y},{testrow}")
+            occupado.add(y)
         if by[x] == testrow:
-            occupado.remove(f"{bx[x]},{by[x]}")
+            occupado.remove(bx[x])
     return len(occupado)
 
 
